@@ -31,8 +31,7 @@ public class Employee {
 	@Column(name ="email_is")
 	private String emailId;
 	
-	@OneToMany(mappedBy = "employee",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Conges> conges= new HashSet<Conges>();
+
 	
 	@OneToMany(mappedBy = "employee",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Salaire> salaire= new HashSet<Salaire>();

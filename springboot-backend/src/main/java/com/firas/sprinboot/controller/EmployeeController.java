@@ -39,14 +39,14 @@ public class EmployeeController {
 	// get employee by id rest api
 	@RequestMapping(value = "/employees/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-		Employee employee = employeeRepository.findById(id).orElseThrow();
+		Employee employee = employeeRepository.findById(id).orElse(null);
 		return ResponseEntity.ok(employee);
 	}
 	
 	//update employee rest api
 	@RequestMapping(value ="/employees/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Employee> updateEmployee(@PathVariable long id, @RequestBody Employee employeeDeatail){
-		Employee employee = employeeRepository.findById(id).orElseThrow();
+		Employee employee = employeeRepository.findById(id).orElse(null);
 		
 		employee.setFirstName(employeeDeatail.getFirstName());
 		employee.setLastName(employeeDeatail.getLastName());
@@ -59,7 +59,7 @@ public class EmployeeController {
 	//delete employee rest api
 	@RequestMapping(value="/employees/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable long id){
-		Employee employee = employeeRepository.findById(id).orElseThrow();
+		Employee employee = employeeRepository.findById(id).orElse(null);
 		employeeRepository.delete(employee);
 		Map<String, Boolean> response = new HashMap<String, Boolean>();
 		response.put("deleted", Boolean.TRUE);

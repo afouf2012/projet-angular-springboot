@@ -1,5 +1,7 @@
 package com.firas.sprinboot.modele;
 
+import lombok.Data;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@Data
 @Entity
 @Table(name="Conges")
 public class Conges {
@@ -22,42 +25,12 @@ public class Conges {
 	
 	@Column(name ="Date_fin")
 	private String datefin;
-	
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id", insertable = false, updatable = false)
-    private Employee employee;
 
-	public Conges() {
-	}
-	public Conges(long id, String datedebut, String datefin) {
-		super();
-		this.id = id;
-		this.datedebut = datedebut;
-		this.datefin = datefin;
-	}
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
 
-	public String getDatedebut() {
-		return datedebut;
-	}
 
-	public void setDatedebut(String datedebut) {
-		this.datedebut = datedebut;
-	}
-
-	public String getDatefin() {
-		return datefin;
-	}
-
-	public void setDatefin(String datefin) {
-		this.datefin = datefin;
-	}
+	@Column(name ="employee")
+    private String employee;
 
 
 	

@@ -39,14 +39,14 @@ public class SalaireController {
 	// get salaire by id 
 	@RequestMapping(value = "/salaire/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Salaire> getsalaireById(@PathVariable Long id) {
-		Salaire salaire = SalaireRepository.findById(id).orElseThrow();
+		Salaire salaire = SalaireRepository.findById(id).orElse(null);
 		return ResponseEntity.ok(salaire);
 	}
 	
 	//update employee rest api
 		@RequestMapping(value ="/salaire/{id}", method = RequestMethod.PUT)
 		public ResponseEntity<Salaire> updatesalaire(@PathVariable long id, @RequestBody Salaire salaireDeatail){
-			Salaire salaire = SalaireRepository.findById(id).orElseThrow();
+			Salaire salaire = SalaireRepository.findById(id).orElse(null);
 			
 			salaire.setNumcontrat(salaireDeatail.getNumcontrat());
 			salaire.setDatepayement(salaireDeatail.getDatepayement());
@@ -59,7 +59,7 @@ public class SalaireController {
 		//delete employee rest api
 		@RequestMapping(value="/employees/{id}", method=RequestMethod.DELETE)
 		public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable long id){
-			Salaire salaire = SalaireRepository.findById(id).orElseThrow();
+			Salaire salaire = SalaireRepository.findById(id).orElse(null);
 			SalaireRepository.delete(salaire);
 			Map<String, Boolean> response = new HashMap<String, Boolean>();
 			response.put("deleted", Boolean.TRUE);
